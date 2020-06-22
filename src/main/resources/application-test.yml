@@ -2,21 +2,52 @@ spring:
   datasource:
     # 网厨数据库
     db1:
-      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: org.postgresql.Driver
       type: com.alibaba.druid.pool.DruidDataSource
-      jdbc-url: jdbc:mysql://localhost:3307/db_01?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false&allowMultiQueries=true
-      username: root
-      password: 123456
+      url: jdbc:postgresql://192.168.1.38:5432/db1?currentSchema=public&assumeMinServerVersion=9.0&socketTimeout=60
+      username: postgres
+      password: hasowifi
+      initialSize: 10
+      minIdle: 20
+      maxIdle: 50
+      maxActive: 50
+      maxpoolsize: 50
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,slf4j
 
     # 厨币商城数据库
     db2:
-      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: org.postgresql.Driver
       type: com.alibaba.druid.pool.DruidDataSource
-      jdbc-url: jdbc:mysql://localhost:3307/db_02?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false&allowMultiQueries=true
-      username: root
-      password: 123456
+      url: jdbc:postgresql://192.168.1.38:54323/db2?currentSchema=public&assumeMinServerVersion=9.0&socketTimeout=60
+      username: postgres
+      password: hasowifi
+      initialSize: 10
+      minIdle: 20
+      maxIdle: 50
+      maxActive: 50
+      maxpoolsize: 50
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,slf4j
 
   # 分布式锁
   jta:
-    # log-dir: classpath*:tx-logs
+#    log-dir: classpath*:tx-logs
+    log-dir: C:/temp
     transaction-manager-id: txManager

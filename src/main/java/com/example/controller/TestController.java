@@ -5,6 +5,7 @@ import com.example.mapper.db2.IGradeMapper;
 import com.example.po.db1.UserPO;
 import com.example.po.db2.GradePO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,21 +41,21 @@ public class TestController {
         return result;
     }
 
-    // @Transactional
+     @Transactional
     @RequestMapping("/update")
     public Object update(String userId, String username, Integer score) {
 
-        UserPO user = userMapper.selectByPrimaryKey(userId);
-        user.setUsername(username);
+        UserPO user = userMapper.selectByPrimaryKey("2");
+        user.setUsername("yaobin4");
 
         userMapper.updateByPrimaryKeySelective(user);
 
-        GradePO gradePO = gradeMapper.getGradeByUserId(userId);
-        gradePO.setScore(score);
-
+        GradePO gradePO = gradeMapper.getGradeByUserId("2");
+        gradePO.setScore(1400);
+//         int i = 1/ 0;
         gradeMapper.updateByPrimaryKeySelective(gradePO);
 
-        // int i = 1/ 0;
+
 
         return "SUCCESS";
     }
